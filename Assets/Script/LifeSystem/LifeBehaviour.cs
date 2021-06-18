@@ -4,6 +4,7 @@ public abstract class LifeBehaviour : MonoBehaviour, ILife
 {
     protected int life;
     
+    
     public void TakeDamage(int damageAmount)
     {
         if (damageAmount < life && life > 0)
@@ -16,8 +17,14 @@ public abstract class LifeBehaviour : MonoBehaviour, ILife
         }
     }
 
-    public void Death()
+    public virtual void Death()
     {
-        Debug.Log(gameObject.name + " Morreu!");
+        life = 0;
+        Destroy(gameObject);
+    }
+
+    public int GetCurrentLife()
+    {
+        return life;
     }
 }

@@ -6,7 +6,7 @@ public class PlayerLife : LifeBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private int lifeAmount;
-    private void Start()
+    private void Awake()
     {
         life = lifeAmount;
     }
@@ -14,5 +14,11 @@ public class PlayerLife : LifeBehaviour
     private void FixedUpdate()
     {
         slider.value = life;
+    }
+
+    public override void Death()
+    {
+        life = 0;
+        gameObject.SetActive(false);
     }
 }

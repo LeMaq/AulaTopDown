@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sword
   - Enemy
+  - EnemyVisionCollider
   layers:
   - Default
   - TransparentFX

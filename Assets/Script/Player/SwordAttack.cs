@@ -6,7 +6,9 @@ using UnityEngine;
 public class SwordAttack : MonoBehaviour
 {
     private PlayerAttack player;
-    public GameObject target;
+    private GameObject target;
+    public int swordDamage;
+    private bool alreadyAttack;
 
     private void Start()
     {
@@ -21,13 +23,16 @@ public class SwordAttack : MonoBehaviour
     public void EA()
     {
         player.EndAttack();
+        alreadyAttack = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && player.isAttacking && !alreadyAttack)
         {
             target = other.gameObject;
+            target.GetComponent<EnemyLife>().TakeDamage(swordDamage);
+            alreadyAttack = true;
         }
     }
 }
